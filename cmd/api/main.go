@@ -1,8 +1,9 @@
 package main
 
 import (
-	"Encrypt-Backup-App/internal/server"
 	"fmt"
+
+	"github.com/Edu0liver/Encrypt-Backup-App/internal/server"
 )
 
 func main() {

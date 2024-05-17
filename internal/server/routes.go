@@ -9,7 +9,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"Encrypt-Backup-App/cmd/web"
+	"github.com/Edu0liver/Encrypt-Backup-App/cmd/web"
 	"github.com/a-h/templ"
 	"nhooyr.io/websocket"
 )

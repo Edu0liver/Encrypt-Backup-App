@@ -1,4 +1,4 @@
-module Encrypt-Backup-App
+module github.com/Edu0liver/Encrypt-Backup-App
 
 go 1.21.0
 

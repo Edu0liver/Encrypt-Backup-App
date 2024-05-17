@@ -9,7 +9,7 @@ import (
 
 	_ "github.com/joho/godotenv/autoload"
 
-	"Encrypt-Backup-App/internal/database"
+	"github.com/Edu0liver/Encrypt-Backup-App/internal/database"
 )
 
 type Server struct {
