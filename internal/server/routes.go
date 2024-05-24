@@ -10,6 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/Edu0liver/Encrypt-Backup-App/cmd/web"
+	"github.com/Edu0liver/Encrypt-Backup-App/internal/filespkg"
 	"github.com/a-h/templ"
 	"nhooyr.io/websocket"
 )
@@ -32,6 +33,8 @@ func (s *Server) RegisterRoutes() http.Handler {
 	r.POST("/hello", func(c *gin.Context) {
 		web.HelloWebHandler(c.Writer, c.Request)
 	})
+
+	r.POST("/upload", GetFileController)
 
 	return r
 }
@@ -72,4 +75,29 @@ func (s *Server) websocketHandler(c *gin.Context) {
 		}
 		time.Sleep(time.Second * 2)
 	}
+}
+
+func GetFileController(c *gin.Context) {
+	file, header, err := c.Request.FormFile("file")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, "")
+	}
+
+	filename := header.Filename
+
+	fileForm := filespkg.NewFile(&filename)
+
+	err = fileForm.Encrypt(file)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err)
+		return
+	}
+
+	// err = fileForm.Decrypt()
+	// if err != nil {
+	// 	c.JSON(http.StatusInternalServerError, err)
+	// 	return
+	// }
+
+	c.JSON(http.StatusAccepted, "")
 }
